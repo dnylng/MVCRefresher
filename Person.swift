@@ -13,11 +13,19 @@ class Person {
     private var _lastName: String!
     
     var firstName: String {
-        return _firstName
+        get {
+            return _firstName
+        } set {
+            _firstName = newValue.capitalized
+        }
     }
     
     var lastName: String {
-        return _lastName
+        get {
+            return _lastName
+        } set {
+            _lastName = newValue.capitalized
+        }
     }
     
     init(first: String, last: String) {

@@ -12,21 +12,24 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var fullName: UILabel!
     
-    @IBOutlet weak var rickImage: UIImageView!
+//    @IBOutlet weak var rickImage: UIImageView!
+    
+    let person = Person(first: "Rick", last: "Sanchez")
+    
+    @IBOutlet weak var renameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let person = Person(first: "Rick", last: "Sanchez")
-        
 //        Example of what not to do in the controller
 //        fullName.text = "\(person.firstName) \(person.lastName)"
         
         // Keep data manipulation in the model, not controller
         fullName.text = person.fullName
         
-        rickImage.layer.cornerRadius = 5.0
-        rickImage.clipsToBounds = true
+//        Another bad example, manipulating images in VC
+//        rickImage.layer.cornerRadius = 5.0
+//        rickImage.clipsToBounds = true
+//        What you have to do is create custom view class in the view layer
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +37,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func renamePressed(_ sender: Any) {
+        if let text = renameField.text {
+            person.firstName = text
+            fullName.text = person.fullName
+        }
+    }
 
 }
 
